@@ -148,7 +148,7 @@ export default function ComboDetailPage() {
         </button>
 
         {/* ── Layout principal: 2 columnas ── */}
-        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-8 md:gap-12 items-start">
 
           {/* ────────────── COLUMNA IZQUIERDA ────────────── */}
           <div className="flex flex-col items-center gap-5 w-full">
