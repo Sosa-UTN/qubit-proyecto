@@ -39,10 +39,23 @@ export default function Footer() {
         {/* Divider */}
         <div className="w-full h-px bg-white/20" />
 
-        {/* Copyright */}
-        <p className="text-white/60 text-xs text-center">
-          © {new Date().getFullYear()} Qubit. Todos los derechos reservados.
-        </p>
+        {/* Fila inferior */}
+        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/70">
+          <p>© {new Date().getFullYear()} Qubit. Todos los derechos reservados.</p>
+
+          <p className="flex items-center gap-1.5">
+            <span>Web por</span>
+            <a
+              href="https://wa.me/5491144096730?text=Hola!%20Vi%20la%20web%20de%20Qubit%20y%20me%20gustaría%20hacerte%20una%20consulta%20por%20un%20desarrollo%20web."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white/90 hover:text-white underline underline-offset-2 transition-colors inline-flex items-center gap-1"
+              title="Contactar al desarrollador por WhatsApp"
+            >
+              Santiago Sosa • Full Stack
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   )
