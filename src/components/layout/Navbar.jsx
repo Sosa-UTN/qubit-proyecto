@@ -2,15 +2,6 @@ import { Link } from 'react-router-dom'
 import { Menu, Search, User, ShoppingBag } from 'lucide-react'
 import { useCart } from '../../context/CartContext'
 
-// Cada letra del logo con su color de marca
-const LOGO_LETTERS = [
-  { char: 'Q', color: '#A594C9' },
-  { char: 'U', color: '#E2847A' },
-  { char: 'B', color: '#E5B25D' },
-  { char: 'I', color: '#7CA682' },
-  { char: 'T', color: '#6E94B2' },
-]
-
 export default function Navbar() {
   const { totalItems, setIsCartOpen } = useCart()
 
@@ -40,15 +31,11 @@ export default function Navbar() {
 
       {/* ── Centro: Logotipo QUBIT ── */}
       <Link to="/" className="flex items-center select-none">
-        {LOGO_LETTERS.map(({ char, color }) => (
-          <span
-            key={char}
-            className="text-2xl font-extrabold leading-none"
-            style={{ color }}
-          >
-            {char}
-          </span>
-        ))}
+        <img
+          src="/images/logo.png"
+          alt="QUBIT"
+          className="h-9 md:h-15 w-auto object-contain transition-transform hover:scale-105"
+        />
       </Link>
 
       {/* ── Derecha: usuario + carrito ── */}

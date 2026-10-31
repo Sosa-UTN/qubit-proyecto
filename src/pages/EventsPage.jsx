@@ -1,15 +1,6 @@
 import { useState } from 'react'
 import SubHeader from '../components/layout/SubHeader'
 
-// Logo QUBIT con letras de colores (versión grande)
-const LOGO_LETTERS = [
-  { char: 'Q', color: '#A594C9' },
-  { char: 'U', color: '#E2847A' },
-  { char: 'B', color: '#E5B25D' },
-  { char: 'I', color: '#7CA682' },
-  { char: 'T', color: '#6E94B2' },
-]
-
 export default function EventsPage() {
   const [email, setEmail]   = useState('')
   const [subscribed, setSubscribed] = useState(false)
@@ -56,21 +47,12 @@ export default function EventsPage() {
           </div>
 
           {/* Logo QUBIT 3D grande */}
-          <div className="flex items-center select-none">
-            {LOGO_LETTERS.map(({ char, color }) => (
-              <span
-                key={char}
-                className="font-black leading-none"
-                style={{
-                  color,
-                  fontSize: '3.5rem',
-                  textShadow: `2px 3px 0px ${color}88, 4px 6px 0px rgba(0,0,0,0.08)`,
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                {char}
-              </span>
-            ))}
+          <div className="flex items-center justify-center select-none py-2">
+            <img
+              src="/images/logo.png"
+              alt="QUBIT"
+              className="h-16 md:h-20 w-auto object-contain drop-shadow-sm"
+            />
           </div>
 
           <p className="text-sm text-stone-500 max-w-sm leading-relaxed">

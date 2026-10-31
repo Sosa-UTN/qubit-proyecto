@@ -1,98 +1,95 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const slides = [
   {
     id: 1,
-    bg: '#C8D7E3',
-    title: 'Nueva colección Qubit',
-    subtitle: 'Piezas modulares que encajan con tu estilo',
-    accent: '#E5B25D',
+    image: '/images/slider-principal/slider-1.jpeg',
+    alt: 'Qubit Módulos Organizadores en uso',
   },
   {
     id: 2,
-    bg: '#D5E0EB',
-    title: 'Combos exclusivos',
-    subtitle: 'Armá tu set personalizado con los mejores módulos',
-    accent: '#A594C9',
+    image: '/images/slider-principal/slider-2.jpeg',
+    alt: 'Módulos que se conectan, tus ideas también',
   },
   {
     id: 3,
-    bg: '#C8D7E3',
-    title: 'Edición limitada',
-    subtitle: 'Módulos de colección con colores únicos de temporada',
-    accent: '#E2847A',
+    image: '/images/slider-principal/slider-3.png',
+    alt: 'Tu espacio a tu manera con Qubit',
   },
 ]
 
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0)
 
+  // Avance automático cada 5 segundos
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((c) => (c === slides.length - 1 ? 0 : c + 1))
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
+
   function prev() {
     setCurrent((c) => (c === 0 ? slides.length - 1 : c - 1))
   }
+
   function next() {
     setCurrent((c) => (c === slides.length - 1 ? 0 : c + 1))
   }
 
-  const slide = slides[current]
-
   return (
-    <div className="relative w-full overflow-hidden rounded-3xl mx-auto" style={{ backgroundColor: slide.bg, minHeight: '280px' }}>
-      {/* Contenido del slide */}
-      <div className="flex flex-col items-center justify-center h-full min-h-[280px] px-16 py-12 text-center gap-3 transition-all duration-300">
-        <span
-          className="text-xs font-semibold tracking-widest uppercase"
-          style={{ color: slide.accent }}
+    <div className="relative w-full overflow-hidden rounded-3xl shadow-sm aspect-[16/9] md:aspect-[2.1/1] max-h-[520px] bg-stone-100 select-none">
+      {/* Diapositivas con transición suave de desvanecimiento */}
+      {slides.map((slide, index) => (
+        <div
+          key={slide.id}
+          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+            index === current ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+          }`}
         >
-          QUBIT ✦ Novedades
-        </span>
-        <h2 className="text-3xl md:text-4xl font-bold text-stone-700 leading-tight">
-          {slide.title}
-        </h2>
-        <p className="text-stone-500 text-base max-w-md">
-          {slide.subtitle}
-        </p>
-        <button
-          className="mt-3 px-6 py-2 rounded-full text-white text-sm font-semibold transition-opacity hover:opacity-80"
-          style={{ backgroundColor: slide.accent }}
-        >
-          Ver más
-        </button>
-      </div>
+          <img
+            src={slide.image}
+            alt={slide.alt}
+            className="w-full h-full object-cover object-center"
+            loading={index === 0 ? 'eager' : 'lazy'}
+          />
+        </div>
+      ))}
 
-      {/* Flecha izquierda */}
+      {/* Flecha dorada izquierda */}
       <button
         onClick={prev}
         aria-label="Anterior"
-        className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-9 h-9 rounded-full shadow-md transition-transform hover:scale-110"
+        className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg transition-transform hover:scale-110 active:scale-95 focus:outline-none"
         style={{ backgroundColor: '#E5B25D' }}
       >
-        <ChevronLeft size={20} color="white" />
+        <ChevronLeft size={24} color="white" strokeWidth={2.5} />
       </button>
 
-      {/* Flecha derecha */}
+      {/* Flecha dorada derecha */}
       <button
         onClick={next}
         aria-label="Siguiente"
-        className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-9 h-9 rounded-full shadow-md transition-transform hover:scale-110"
+        className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg transition-transform hover:scale-110 active:scale-95 focus:outline-none"
         style={{ backgroundColor: '#E5B25D' }}
       >
-        <ChevronRight size={20} color="white" />
+        <ChevronRight size={24} color="white" strokeWidth={2.5} />
       </button>
 
-      {/* Indicadores circulares */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      {/* Indicadores en la parte inferior */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/25 backdrop-blur-xs">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
             aria-label={`Slide ${i + 1}`}
-            className="w-2 h-2 rounded-full transition-all duration-300"
+            className="transition-all duration-300 focus:outline-none rounded-full"
             style={{
-              backgroundColor: i === current ? '#E5B25D' : '#ffffff',
+              width: i === current ? '22px' : '8px',
+              height: '8px',
+              backgroundColor: i === current ? '#E5B25D' : '#FFFFFF',
               opacity: i === current ? 1 : 0.6,
-              transform: i === current ? 'scale(1.3)' : 'scale(1)',
             }}
           />
         ))}
