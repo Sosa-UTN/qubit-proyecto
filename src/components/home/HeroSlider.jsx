@@ -39,14 +39,13 @@ export default function HeroSlider() {
   }
 
   return (
-    <div className="relative w-full overflow-hidden rounded-3xl shadow-sm aspect-[16/9] md:aspect-[2.1/1] max-h-[520px] bg-stone-100 select-none">
+    <div className="relative w-full overflow-hidden rounded-3xl shadow-sm aspect-[16/9] md:aspect-[2.2/1] max-h-[580px] bg-stone-100 select-none">
       {/* Diapositivas con transición suave de desvanecimiento */}
       {slides.map((slide, index) => (
         <div
           key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-            index === current ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-          }`}
+          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === current ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+            }`}
         >
           <img
             src={slide.image}
