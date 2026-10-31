@@ -16,7 +16,7 @@ export default function CombosPage() {
       {/* Barra de título de sección */}
       <SubHeader title="Productos" />
 
-      <div className="w-full max-w-5xl mx-auto px-4 py-8 flex flex-col gap-8">
+      <div className="w-full max-w-8xl mx-auto px-4 py-8 flex flex-col gap-8">
         {/* Barra de búsqueda */}
         <div
           className="flex items-center gap-3 px-4 py-3 rounded-2xl shadow-sm w-full max-w-sm mx-auto"

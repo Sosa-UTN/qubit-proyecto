@@ -140,12 +140,19 @@ export default function ComboDetailPage() {
                 onChange={setActiveAngle}
               />
 
-              {/* Pieza principal */}
+              {/* Imagen / Pieza principal */}
               <div
-                className="rounded-3xl flex items-center justify-center p-6 shadow-sm"
-                style={{ backgroundColor: currentAngle.bg + '33' }}
+                className="w-full max-w-[340px] aspect-[4/3] rounded-3xl overflow-hidden shadow-sm bg-white border border-stone-200/60 flex items-center justify-center p-2"
               >
-                <MainPuzzlePiece color={currentAngle.bg} />
+                {currentAngle?.image ? (
+                  <img
+                    src={currentAngle.image}
+                    alt={combo.name}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                ) : (
+                  <MainPuzzlePiece color={currentAngle?.bg || '#8EAE8D'} />
+                )}
               </div>
             </div>
 

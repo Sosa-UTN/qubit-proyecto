@@ -1,114 +1,40 @@
 import { useNavigate } from 'react-router-dom'
 
-// SVG con forma de pieza de rompecabezas (4 pestañas: arriba, abajo, izquierda, derecha)
-function PuzzlePieceShape({ color = '#8EAE8D', children }) {
-  return (
-    <div className="relative flex items-center justify-center" style={{ width: 180, height: 180 }}>
-      <svg
-        viewBox="0 0 200 200"
-        width="180"
-        height="180"
-        className="absolute inset-0"
-      >
-        {/*
-          Pieza de rompecabezas:
-          - Cuerpo cuadrado de 120×120 centrado en el viewBox (40,40 → 160,160)
-          - Pestaña saliente arriba (centro del borde superior)
-          - Pestaña saliente derecha
-          - Entrante abajo
-          - Entrante izquierda
-        */}
-        <path
-          d="
-            M 60 40
-            L 85 40
-            Q 85 20 100 20
-            Q 115 20 115 40
-            L 140 40
-            L 140 65
-            Q 160 65 160 80
-            Q 160 95 140 95
-            L 140 120
-            Q 140 140 125 140
-            Q 110 140 110 120
-            L 80 120
-            Q 80 140 65 140
-            Q 50 140 50 120
-            L 60 120
-            L 60 95
-            Q 40 95 40 80
-            Q 40 65 60 65
-            Z
-          "
-          fill={color}
-          style={{
-            filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.15))',
-          }}
-        />
-        {/* Highlight sutil para dar sensación 3D / foam */}
-        <path
-          d="
-            M 62 42
-            L 85 42
-            Q 87 24 100 23
-            Q 113 24 115 42
-            L 138 42
-            L 138 65
-            Q 157 66 157 80
-            Q 157 90 148 93
-          "
-          fill="none"
-          stroke="white"
-          strokeWidth="3"
-          strokeLinecap="round"
-          opacity="0.35"
-        />
-      </svg>
-
-      {/* Contenido centrado sobre la pieza */}
-      <div className="relative z-10 flex flex-col items-center justify-center gap-1 text-center px-2" style={{ marginTop: -8 }}>
-        {children}
-      </div>
-    </div>
-  )
-}
-
 export default function ComboCard({ combo }) {
   const navigate = useNavigate()
 
   return (
     <button
       onClick={() => navigate(`/combos/${combo.id}`)}
-      className="flex flex-col items-center gap-3 p-4 rounded-2xl transition-transform duration-300 hover:-translate-y-1 focus:outline-none w-full"
-      style={{ backgroundColor: 'transparent' }}
+      className="flex flex-col rounded-3xl overflow-hidden p-3 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg focus:outline-none w-full bg-white border border-stone-200/70 group cursor-pointer"
       aria-label={`Ver ${combo.name}`}
     >
-      {/* Pieza de rompecabezas */}
-      <PuzzlePieceShape>
+      {/* Contenedor de imagen del combo */}
+      <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-stone-100 flex items-center justify-center relative shadow-xs">
+        <img
+          src={combo.coverImage || (combo.images && combo.images[0]?.image)}
+          alt={combo.name}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
         <span
-          className="text-sm font-bold leading-tight"
-          style={{ color: '#C96876' }}
+          className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase text-white shadow-xs backdrop-blur-xs"
+          style={{ backgroundColor: 'rgba(142, 174, 141, 0.92)' }}
         >
-          Combo
+          Combo Patch
         </span>
-        <span
-          className="text-sm font-bold leading-tight"
-          style={{ color: '#C96876' }}
-        >
-          patch
-        </span>
-      </PuzzlePieceShape>
+      </div>
 
-      {/* Info debajo de la pieza */}
-      <div className="flex flex-col items-center gap-1 text-center">
-        <p className="text-sm font-semibold text-stone-700 leading-snug">
+      {/* Información debajo de la foto */}
+      <div className="p-3 flex flex-col items-center gap-1 w-full text-center">
+        <p className="text-sm font-bold text-stone-800 leading-snug group-hover:text-stone-950 transition-colors">
           {combo.name}
         </p>
-        <p className="text-xs text-stone-400 leading-relaxed max-w-[160px] line-clamp-2">
+        <p className="text-xs text-stone-500 leading-relaxed max-w-[200px] line-clamp-2">
           {combo.description}
         </p>
         <p
-          className="text-sm font-bold mt-1"
+          className="text-sm font-black mt-1"
           style={{ color: '#8EAE8D' }}
         >
           ${combo.price.toLocaleString('es-AR')}
