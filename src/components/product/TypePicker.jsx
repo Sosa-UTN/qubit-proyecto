@@ -1,9 +1,9 @@
 const TYPES = [
-  { key: 'A', label: 'A' },
-  { key: 'B', label: 'B' },
-  { key: 'C', label: 'C' },
-  { key: 'D', label: 'D' },
-  { key: 'E', label: 'E' },
+  { key: 'QUBOX', label: 'QUBOX' },
+  { key: 'QUBOOK', label: 'QUBOOK' },
+  { key: 'QUMOOD', label: 'QUMOOD' },
+  { key: 'QUMIRROR', label: 'QUMIRROR' },
+  { key: 'QUBART', label: 'QUBART' },
 ]
 
 export default function TypePicker({ selected, onChange, label = 'Tipos' }) {
@@ -18,7 +18,7 @@ export default function TypePicker({ selected, onChange, label = 'Tipos' }) {
               key={key}
               onClick={() => onChange(key)}
               aria-label={`Tipo ${name}`}
-              className="w-9 h-9 rounded-xl text-xs font-bold transition-all duration-200 hover:scale-105 focus:outline-none"
+              className="w-20 h-9 rounded-xl text-xs font-bold transition-all duration-200 hover:scale-105 focus:outline-none"
               style={{
                 backgroundColor: isActive ? '#8EAE8D' : '#EDE8E1',
                 color: isActive ? 'white' : '#8A7F7A',

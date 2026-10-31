@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 
@@ -70,12 +70,37 @@ export default function ComboDetailPage() {
 
   // Estado de la configuración
   const [activeAngle, setActiveAngle] = useState(0)
-  const [module1Type, setModule1Type] = useState('A')
-  const [module1Color, setModule1Color] = useState('#B86B77')
-  const [module2Type, setModule2Type] = useState('A')
-  const [module2Color, setModule2Color] = useState('#667493')
+  const [configuredModules, setConfiguredModules] = useState(() => {
+    const base = combo?.modules
+    return base.map((m) => ({
+      name: m.name,
+      type: m.defaultType || 'A',
+      color: m.defaultColor || '#8EAE8D',
+    }))
+  })
   const [previewOpen, setPreviewOpen] = useState(false)
   const [addedFeedback, setAddedFeedback] = useState(false)
+
+  // Sincronizar módulos y ángulo si cambia el combo
+  useEffect(() => {
+    if (combo) {
+      const base = combo.modules
+      setConfiguredModules(
+        base.map((m) => ({
+          name: m.name,
+          type: m.defaultType || 'A',
+          color: m.defaultColor || '#8EAE8D',
+        }))
+      )
+      setActiveAngle(0)
+    }
+  }, [id, combo])
+
+  function handleModuleChange(index, field, value) {
+    setConfiguredModules((prev) =>
+      prev.map((mod, i) => (i === index ? { ...mod, [field]: value } : mod))
+    )
+  }
 
   // Producto no encontrado
   if (!combo) {
@@ -99,11 +124,8 @@ export default function ComboDetailPage() {
 
   function handleAddToCart() {
     addToCart(combo, {
-      angle: combo.images[activeAngle].angle,
-      module1Type,
-      module1Color,
-      module2Type,
-      module2Color,
+      angle: combo.images[activeAngle]?.angle || 'Frente',
+      modules: configuredModules,
     })
     setAddedFeedback(true)
     setTimeout(() => setAddedFeedback(false), 2200)
@@ -133,7 +155,7 @@ export default function ComboDetailPage() {
 
             {/* Imagen / Pieza principal */}
             <div
-              className="w-full max-w-[670px] aspect-[4/3] rounded-3xl overflow-hidden shadow-sm bg-white border border-stone-200/60 flex items-center justify-center p-1"
+              className="w-full max-w-[670px] aspect-[4/4] rounded-3xl overflow-hidden shadow-sm bg-white border border-stone-200/60 flex items-center justify-center p-1"
             >
               {currentAngle?.image ? (
                 <img
@@ -191,44 +213,29 @@ export default function ComboDetailPage() {
               </p>
             </div>
 
-            {/* Configurador Módulo 1 */}
-            <div
-              className="rounded-2xl px-5 py-4 flex flex-col gap-4"
-              style={{ backgroundColor: '#F5F0EB' }}
-            >
-              <p className="text-xs font-bold text-stone-500 uppercase tracking-wider">
-                Módulo pequeño 1
-              </p>
-              <TypePicker
-                label="Tipos"
-                selected={module1Type}
-                onChange={setModule1Type}
-              />
-              <ColorPicker
-                label="Colores"
-                selected={module1Color}
-                onChange={setModule1Color}
-              />
-            </div>
-
-            {/* Configurador Módulo 2 */}
-            <div
-              className="rounded-2xl px-5 py-4 flex flex-col gap-4"
-              style={{ backgroundColor: '#F5F0EB' }}
-            >
-              <p className="text-xs font-bold text-stone-500 uppercase tracking-wider">
-                Módulo pequeño 2
-              </p>
-              <TypePicker
-                label="Tipos"
-                selected={module2Type}
-                onChange={setModule2Type}
-              />
-              <ColorPicker
-                label="Colores"
-                selected={module2Color}
-                onChange={setModule2Color}
-              />
+            {/* Configuradores dinámicos de módulos */}
+            <div className="flex flex-col gap-3">
+              {configuredModules.map((module, index) => (
+                <div
+                  key={index}
+                  className="rounded-2xl px-5 py-4 flex flex-col gap-3.5 shadow-xs border border-stone-200/50"
+                  style={{ backgroundColor: '#F5F0EB' }}
+                >
+                  <p className="text-xs font-bold text-stone-600 uppercase tracking-wider">
+                    {module.name}
+                  </p>
+                  <TypePicker
+                    label="Tipos"
+                    selected={module.type}
+                    onChange={(newType) => handleModuleChange(index, 'type', newType)}
+                  />
+                  <ColorPicker
+                    label="Colores"
+                    selected={module.color}
+                    onChange={(newColor) => handleModuleChange(index, 'color', newColor)}
+                  />
+                </div>
+              ))}
             </div>
 
             {/* Botón Agregar al carrito */}
@@ -250,7 +257,7 @@ export default function ComboDetailPage() {
       {previewOpen && (
         <PreviewModal
           combo={combo}
-          config={{ module1Type, module1Color, module2Type, module2Color }}
+          config={{ modules: configuredModules }}
           onClose={() => setPreviewOpen(false)}
         />
       )}

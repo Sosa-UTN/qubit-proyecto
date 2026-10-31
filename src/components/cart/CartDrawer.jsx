@@ -15,6 +15,12 @@ function ColorDot({ color }) {
 
 function CartItem({ item, onRemove }) {
   const { product, options, uniqueId } = item
+  const modules = options.modules || [
+    ...(options.module1Type ? [{ name: 'Módulo 1', type: options.module1Type, color: options.module1Color }] : []),
+    ...(options.module2Type ? [{ name: 'Módulo 2', type: options.module2Type, color: options.module2Color }] : []),
+  ]
+  const mainColor = modules[0]?.color || options.module1Color || '#8EAE8D'
+
   return (
     <div
       className="flex items-start gap-3 rounded-2xl px-4 py-3"
@@ -22,8 +28,8 @@ function CartItem({ item, onRemove }) {
     >
       {/* Icono de pieza */}
       <div
-        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-white text-xs font-bold"
-        style={{ backgroundColor: options.module1Color || '#8EAE8D' }}
+        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-white text-xs font-bold shadow-xs"
+        style={{ backgroundColor: mainColor }}
       >
         {product.name.charAt(0)}
       </div>
@@ -33,22 +39,19 @@ function CartItem({ item, onRemove }) {
         <p className="text-sm font-semibold text-stone-700 truncate">{product.name}</p>
         <p className="text-xs text-stone-400 mt-0.5">Vista: {options.angle}</p>
 
-        {/* Módulo 1 */}
-        <div className="flex items-center gap-1.5 mt-1">
-          <span className="text-[10px] text-stone-400">Mód. 1:</span>
-          <span className="text-[10px] font-semibold text-stone-500">Tipo {options.module1Type}</span>
-          <ColorDot color={options.module1Color} />
-        </div>
-
-        {/* Módulo 2 */}
-        <div className="flex items-center gap-1.5">
-          <span className="text-[10px] text-stone-400">Mód. 2:</span>
-          <span className="text-[10px] font-semibold text-stone-500">Tipo {options.module2Type}</span>
-          <ColorDot color={options.module2Color} />
+        {/* Lista de módulos */}
+        <div className="flex flex-col gap-1 mt-1.5">
+          {modules.map((mod, idx) => (
+            <div key={idx} className="flex items-center gap-1.5 text-[10px]">
+              <span className="text-stone-400 truncate max-w-[110px]">{mod.name}:</span>
+              <span className="font-semibold text-stone-600">Tipo {mod.type}</span>
+              <ColorDot color={mod.color} />
+            </div>
+          ))}
         </div>
 
         <p
-          className="text-sm font-bold mt-1.5"
+          className="text-sm font-bold mt-2"
           style={{ color: '#6E94B2' }}
         >
           ${product.price.toLocaleString('es-AR')}

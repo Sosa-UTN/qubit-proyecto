@@ -167,8 +167,8 @@ function LocationModal({ onClose }) {
     <InfoModal title="Nuestra Ubicación" icon={<MapPin size={20} />} onClose={onClose}>
       <div className="flex flex-col gap-3 text-xs text-stone-600 leading-relaxed">
         <div className="p-3.5 rounded-2xl bg-white border border-stone-200/60">
-          <p className="font-bold text-stone-700 text-sm mb-1">📍 Showroom & Punto de Retiro</p>
-          <p className="text-stone-700 font-medium">Palermo Soho, Ciudad Autónoma de Buenos Aires</p>
+          <p className="font-bold text-stone-700 text-sm mb-1">📍 Punto de Retiro</p>
+          <p className="text-stone-700 font-medium">Barracas, Ciudad Autónoma de Buenos Aires</p>
           <p className="text-stone-400 text-[11px] mt-0.5">(Dirección exacta enviada con la confirmación de compra)</p>
         </div>
         <div className="p-3.5 rounded-2xl bg-white border border-stone-200/60">

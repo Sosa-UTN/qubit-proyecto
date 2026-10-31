@@ -10,7 +10,7 @@ export default function ComboCard({ combo }) {
       aria-label={`Ver ${combo.name}`}
     >
       {/* Contenedor de imagen del combo */}
-      <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-stone-100 flex items-center justify-center relative shadow-xs">
+      <div className="w-full aspect-[4/4] rounded-2xl overflow-hidden bg-stone-100 flex items-center justify-center relative shadow-xs">
         <img
           src={combo.coverImage || (combo.images && combo.images[0]?.image)}
           alt={combo.name}

@@ -4,13 +4,13 @@ import { Gift } from 'lucide-react'
 
 // Mapa de códigos válidos → ruta destino
 const GIFT_CODES = {
-  GIFT1:  '/combos/1',
+  GIFT1: '/combos/1',
   COMBO1: '/combos/1',
-  GIFT2:  '/combos/2',
+  GIFT2: '/combos/2',
   COMBO2: '/combos/2',
-  GIFT3:  '/combos/3',
+  GIFT3: '/combos/3',
   COMBO3: '/combos/3',
-  GIFT4:  '/combos/4',
+  GIFT4: '/combos/4',
   COMBO4: '/combos/4',
 }
 
@@ -28,7 +28,7 @@ export default function GiftCardBar() {
       setCode('')
       navigate(destination)
     } else {
-      setError('Código inválido. Probá con COMBO1, COMBO2, COMBO3 o COMBO4.')
+      setError('Código inválido.')
     }
   }
 

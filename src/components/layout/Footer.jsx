@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 
 const links = [
-  { label: 'Inicio',   to: '/'       },
-  { label: 'Combos',   to: '/combos' },
-  { label: 'Eventos',  to: '/eventos'},
-  { label: 'Contacto', to: '/'       },
+  { label: 'Inicio', to: '/' },
+  { label: 'Combos', to: '/combos' },
+  { label: 'Eventos', to: '/eventos' },
+  { label: 'Contacto', to: '/' },
 ]
 
 export default function Footer() {
@@ -14,8 +14,14 @@ export default function Footer() {
       style={{ backgroundColor: '#8EAE8D' }}
     >
       <div className="max-w-5xl mx-auto flex flex-col items-center gap-4">
-        {/* Logo text */}
-        <span className="text-white text-xl font-bold tracking-widest">QUBIT</span>
+        {/* ── Centro: Logotipo QUBIT ── */}
+        <Link to="/" className="flex items-center select-none">
+          <img
+            src="/images/logo.png"
+            alt="QUBIT"
+            className="h-9 md:h-15 w-auto object-contain transition-transform hover:scale-105"
+          />
+        </Link>
 
         {/* Navigation links */}
         <nav className="flex gap-6">

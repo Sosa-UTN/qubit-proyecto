@@ -1,9 +1,9 @@
 const BRAND_COLORS = [
-  { hex: '#B86B77', label: 'Rosa'     },
-  { hex: '#CFA0D6', label: 'Lila'     },
-  { hex: '#CFA04E', label: 'Mostaza'  },
-  { hex: '#8EA77B', label: 'Verde'    },
-  { hex: '#667493', label: 'Azul'     },
+  { hex: '#BF9BDE', label: 'Rosa' },
+  { hex: '#FFC5D3', label: 'Lila' },
+  { hex: '#CFA04E', label: 'Mostaza' },
+  { hex: '#8EA77B', label: 'Verde' },
+  { hex: '#667493', label: 'Azul' },
 ]
 
 export default function ColorPicker({ selected, onChange, label = 'Colores' }) {

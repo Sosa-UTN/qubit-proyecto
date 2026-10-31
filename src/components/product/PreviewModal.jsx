@@ -2,7 +2,10 @@ import { X } from 'lucide-react'
 
 // Muestra una simulación de cómo se ven las piezas ensambladas
 export default function PreviewModal({ combo, config, onClose }) {
-  const { module1Color, module2Color, module1Type, module2Type } = config
+  const modules = config.modules || [
+    { name: 'Módulo pequeño 1', type: config.module1Type || 'A', color: config.module1Color || '#B86B77' },
+    { name: 'Módulo pequeño 2', type: config.module2Type || 'A', color: config.module2Color || '#667493' },
+  ]
 
   return (
     <div
@@ -11,7 +14,7 @@ export default function PreviewModal({ combo, config, onClose }) {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg rounded-3xl p-7 shadow-2xl"
+        className="relative w-full max-w-lg rounded-3xl p-7 shadow-2xl max-h-[90vh] flex flex-col"
         style={{ backgroundColor: '#FAF6F0' }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -27,72 +30,55 @@ export default function PreviewModal({ combo, config, onClose }) {
         <h3 className="text-base font-bold text-stone-700 mb-1">
           ¿Cómo quedaría?
         </h3>
-        <p className="text-xs text-stone-400 mb-6">
+        <p className="text-xs text-stone-400 mb-5">
           Simulación visual de tu configuración — {combo.name}
         </p>
 
-        {/* Área de simulación */}
-        <div
-          className="w-full rounded-2xl flex items-center justify-center gap-4 py-10 px-6 mb-5"
-          style={{ backgroundColor: '#EBF0F5' }}
-        >
-          {/* Pieza módulo 1 */}
-          <div className="flex flex-col items-center gap-2">
-            <div
-              className="w-20 h-20 rounded-xl shadow-md flex items-center justify-center text-white font-bold text-sm"
-              style={{ backgroundColor: module1Color }}
-            >
-              {module1Type}
+        {/* Scrollable body if needed */}
+        <div className="overflow-y-auto pr-1 flex flex-col gap-4">
+          {/* Área de simulación visual */}
+          <div
+            className="w-full rounded-2xl flex flex-wrap items-center justify-center gap-3 py-6 px-4"
+            style={{ backgroundColor: '#EBF0F5' }}
+          >
+            {modules.map((mod, index) => (
+              <div key={index} className="flex flex-col items-center gap-1.5">
+                <div
+                  className="w-26 h-16 rounded-2xl shadow-md flex items-center justify-center text-white font-black text-base transition-transform hover:scale-105"
+                  style={{ backgroundColor: mod.color }}
+                >
+                  {mod.type}
+                </div>
+                <span className="text-[10px] text-stone-500 font-semibold max-w-[70px] text-center leading-tight">
+                  {mod.name}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Resumen de configuración */}
+          <div
+            className="rounded-xl px-5 py-4 flex flex-col gap-2.5 text-xs"
+            style={{ backgroundColor: '#F0EBE5' }}
+          >
+            <p className="font-semibold text-stone-700 mb-0.5">Tu configuración:</p>
+            <div className="flex flex-col gap-2">
+              {modules.map((mod, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between text-stone-600 border-b border-stone-200/50 pb-1.5 last:border-none last:pb-0"
+                >
+                  <span className="font-medium text-stone-700">{mod.name}:</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-stone-500 font-semibold">Tipo {mod.type}</span>
+                    <span
+                      className="w-3.5 h-3.5 rounded-full inline-block border border-white/60 shadow-xs"
+                      style={{ backgroundColor: mod.color }}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
-            <span className="text-[10px] text-stone-400 font-semibold">Módulo 1</span>
-          </div>
-
-          {/* Conector visual */}
-          <div className="flex flex-col items-center gap-1">
-            <div
-              className="w-6 h-2 rounded-full"
-              style={{ backgroundColor: '#C8D7E3' }}
-            />
-            <span className="text-[9px] text-stone-300">✦</span>
-            <div
-              className="w-6 h-2 rounded-full"
-              style={{ backgroundColor: '#C8D7E3' }}
-            />
-          </div>
-
-          {/* Pieza módulo 2 */}
-          <div className="flex flex-col items-center gap-2">
-            <div
-              className="w-20 h-20 rounded-xl shadow-md flex items-center justify-center text-white font-bold text-sm"
-              style={{ backgroundColor: module2Color }}
-            >
-              {module2Type}
-            </div>
-            <span className="text-[10px] text-stone-400 font-semibold">Módulo 2</span>
-          </div>
-        </div>
-
-        {/* Resumen de configuración */}
-        <div
-          className="rounded-xl px-5 py-4 flex flex-col gap-2 text-xs"
-          style={{ backgroundColor: '#F0EBE5' }}
-        >
-          <p className="font-semibold text-stone-600 mb-1">Tu configuración:</p>
-          <div className="flex items-center gap-2 text-stone-500">
-            <span className="font-medium">Módulo 1:</span>
-            <span>Tipo {module1Type}</span>
-            <span
-              className="w-3 h-3 rounded-full inline-block"
-              style={{ backgroundColor: module1Color }}
-            />
-          </div>
-          <div className="flex items-center gap-2 text-stone-500">
-            <span className="font-medium">Módulo 2:</span>
-            <span>Tipo {module2Type}</span>
-            <span
-              className="w-3 h-3 rounded-full inline-block"
-              style={{ backgroundColor: module2Color }}
-            />
           </div>
         </div>
 
