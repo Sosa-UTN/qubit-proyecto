@@ -4,10 +4,10 @@ import { ArrowLeft } from 'lucide-react'
 
 import { combos } from '../data/products'
 import { useCart } from '../context/CartContext'
-import SubHeader    from '../components/layout/SubHeader'
+import SubHeader from '../components/layout/SubHeader'
 import AngleSelector from '../components/product/AngleSelector'
-import ColorPicker  from '../components/product/ColorPicker'
-import TypePicker   from '../components/product/TypePicker'
+import ColorPicker from '../components/product/ColorPicker'
+import TypePicker from '../components/product/TypePicker'
 import PreviewModal from '../components/product/PreviewModal'
 
 // SVG grande de la pieza de rompecabezas (vista principal)
@@ -69,12 +69,12 @@ export default function ComboDetailPage() {
   const combo = combos.find((c) => c.id === Number(id))
 
   // Estado de la configuración
-  const [activeAngle, setActiveAngle]     = useState(0)
-  const [module1Type, setModule1Type]     = useState('A')
-  const [module1Color, setModule1Color]   = useState('#B86B77')
-  const [module2Type, setModule2Type]     = useState('A')
-  const [module2Color, setModule2Color]   = useState('#667493')
-  const [previewOpen, setPreviewOpen]     = useState(false)
+  const [activeAngle, setActiveAngle] = useState(0)
+  const [module1Type, setModule1Type] = useState('A')
+  const [module1Color, setModule1Color] = useState('#B86B77')
+  const [module2Type, setModule2Type] = useState('A')
+  const [module2Color, setModule2Color] = useState('#667493')
+  const [previewOpen, setPreviewOpen] = useState(false)
   const [addedFeedback, setAddedFeedback] = useState(false)
 
   // Producto no encontrado
@@ -99,7 +99,7 @@ export default function ComboDetailPage() {
 
   function handleAddToCart() {
     addToCart(combo, {
-      angle:        combo.images[activeAngle].angle,
+      angle: combo.images[activeAngle].angle,
       module1Type,
       module1Color,
       module2Type,
@@ -116,7 +116,7 @@ export default function ComboDetailPage() {
       {/* Barra de sección */}
       <SubHeader title={`Producto — ${combo.name}`} />
 
-      <div className="w-full max-w-5xl mx-auto px-4 py-8">
+      <div className="w-full max-w-7xl mx-auto px-4 py-8">
         {/* Botón de regreso */}
         <button
           onClick={() => navigate('/combos')}
@@ -126,35 +126,32 @@ export default function ComboDetailPage() {
         </button>
 
         {/* ── Layout principal: 2 columnas ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] items-start">
 
           {/* ────────────── COLUMNA IZQUIERDA ────────────── */}
-          <div className="flex flex-col items-center gap-5">
+          <div className="flex flex-col items-center gap-5 w-full">
 
-            {/* Visor principal + selector de ángulos */}
-            <div className="flex items-center gap-4">
-              {/* Selector vertical de ángulos */}
-              <AngleSelector
-                angles={combo.images}
-                activeIndex={activeAngle}
-                onChange={setActiveAngle}
-              />
-
-              {/* Imagen / Pieza principal */}
-              <div
-                className="w-full max-w-[340px] aspect-[4/3] rounded-3xl overflow-hidden shadow-sm bg-white border border-stone-200/60 flex items-center justify-center p-2"
-              >
-                {currentAngle?.image ? (
-                  <img
-                    src={currentAngle.image}
-                    alt={combo.name}
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                ) : (
-                  <MainPuzzlePiece color={currentAngle?.bg || '#8EAE8D'} />
-                )}
-              </div>
+            {/* Imagen / Pieza principal */}
+            <div
+              className="w-full max-w-[670px] aspect-[4/3] rounded-3xl overflow-hidden shadow-sm bg-white border border-stone-200/60 flex items-center justify-center p-1"
+            >
+              {currentAngle?.image ? (
+                <img
+                  src={currentAngle.image}
+                  alt={combo.name}
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              ) : (
+                <MainPuzzlePiece color={currentAngle?.bg || '#8EAE8D'} />
+              )}
             </div>
+
+            {/* Selector de ángulos/miniaturas ahora abajo de la imagen principal */}
+            <AngleSelector
+              angles={combo.images}
+              activeIndex={activeAngle}
+              onChange={setActiveAngle}
+            />
 
             {/* Botón "¿Cómo quedaría?" */}
             <button
