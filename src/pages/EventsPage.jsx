@@ -38,7 +38,7 @@ export default function EventsPage() {
                 <span className="text-3xl">🎉</span>
                 <p className="font-bold text-stone-700">¡Gracias por suscribirte!</p>
                 <p className="text-sm text-stone-500">
-                  Te vamos a avisar a tu correo sobre las próximas ferias y talleres de Qubit.
+                  Te vamos a avisar a tu correo sobre las próximas ferias de Qubit.
                 </p>
                 <button
                   onClick={() => setSubscribed(false)}
@@ -51,7 +51,7 @@ export default function EventsPage() {
             ) : (
               <>
                 <p className="text-sm font-semibold text-stone-700">
-                  📬 Avisame de próximos eventos y talleres
+                  📬 Avisame de próximos eventos
                 </p>
                 <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
                   <input

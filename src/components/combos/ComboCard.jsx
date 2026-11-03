@@ -30,7 +30,7 @@ export default function ComboCard({ combo }) {
         <p className="text-sm font-bold text-stone-800 leading-snug group-hover:text-stone-950 transition-colors">
           {combo.name}
         </p>
-        <p className="text-xs text-stone-500 leading-relaxed max-w-[200px] line-clamp-2">
+        <p className="text-xs text-stone-500 leading-relaxed max-w-[200px] line-clamp-2 whitespace-pre-line">
           {combo.description}
         </p>
         <p

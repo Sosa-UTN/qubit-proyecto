@@ -145,16 +145,9 @@ function AboutModal({ onClose }) {
     <InfoModal title="Quiénes Somos" icon={<Users size={20} />} onClose={onClose}>
       <div className="flex flex-col gap-3 text-xs text-stone-600 leading-relaxed">
         <div className="p-3.5 rounded-2xl bg-white border border-stone-200/60">
-          <p className="font-bold text-stone-700 text-sm mb-1.5">🧩 El concepto QUBIT</p>
+          <p className="font-bold text-stone-700 text-sm mb-1.5">🧩 Bienvenidos a QUBIT</p>
           <p>
-            Somos un estudio de diseño que reimagina los organizadores de pared mediante piezas modulares tipo rompecabezas.
-            Creemos que ordenar también puede ser divertido, táctil y estético.
-          </p>
-        </div>
-        <div className="p-3.5 rounded-2xl bg-white border border-stone-200/60">
-          <p className="font-bold text-stone-700 text-sm mb-1.5">🌱 Materiales & Calidad</p>
-          <p>
-            Cada parche y módulo está confeccionado en foam de alta densidad con fundas de textura suave y costuras reforzadas, diseñados para durar y combinarse infinitamente.
+            Somos una marca que propone nuevas formas de organizar y personalizar a través de sistemas modulares, versátiles y únicos para cada uno. Diseñamos productos que invitan a experimentar, crear y combinar nuevas formas. Queremos que cada persona pueda transformar su espacio en un lugar propio, donde sus ideas y personalidad se haga visible.
           </p>
         </div>
       </div>

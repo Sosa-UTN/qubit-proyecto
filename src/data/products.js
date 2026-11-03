@@ -3,10 +3,7 @@
 
 export const ModulosCombo1 = [
   { id: 1, name: 'Módulo pequeño', defaultType: 'QUBOX', defaultColor: '#BF9BDE' },
-  { id: 2, name: 'Módulo pequeño', defaultType: 'QUBOX', defaultColor: '#BF9BDE' },
-  { id: 3, name: 'Módulo mediano', defaultType: 'QUBOX', defaultColor: '#BF9BDE' },
-  { id: 4, name: 'Módulo mediano', defaultType: 'QUBOX', defaultColor: '#BF9BDE' },
-  { id: 5, name: 'Módulo grande', defaultType: 'QUBOX', defaultColor: '#BF9BDE' },
+  { id: 2, name: 'Módulo grande', defaultType: 'QUBOX', defaultColor: '#BF9BDE' }
 ]
 
 export const ModulosCombo2 = [
@@ -32,10 +29,10 @@ export const ModulosCombo4 = [
 export const combos = [
   {
     id: 1,
-    name: 'Combo Patch Alfa',
+    name: 'QUBIT DUO',
     description:
-      'El pack esencial para arrancar tu colección modular. Incluye estantería azul, organizador verde, marco espejo rosa, corcho y pizarra.',
-    price: 4500,
+      'Este combo contiene 2 módulos:\n1 Módulo grande (50 x 50)\n1 Módulo pequeño (25 x 25)',
+    price: 66000,
     materials: 'Foam de alta densidad, fundas textiles suaves con costuras reforzadas.',
     dimensions: 'Set completo: 85 cm × 60 cm',
     coverImage: '/images/combos/combo-1-img-1.jpg',
@@ -50,10 +47,10 @@ export const combos = [
   },
   {
     id: 2,
-    name: 'Combo Patch Beta',
+    name: 'QUBIT WORLD',
     description:
-      'Pack de 4 piezas asimétricas con estantería vertical, organizador con bolsillos, pizarra con marcadores y portarretrato amarillo.',
-    price: 5200,
+      'Este combo contiene 4 módulos:\n1 Módulo grande (50 x 50)\n1 Módulo mediano (50 x 25)\n2 Módulos pequeños (25 x 25)',
+    price: 125000,
     materials: 'Foam de tacto suave, terminación mate resistente.',
     dimensions: 'Set completo: 75 cm × 65 cm',
     coverImage: '/images/combos/combo-2-img-1.jpg',
@@ -68,10 +65,9 @@ export const combos = [
   },
   {
     id: 3,
-    name: 'Combo Patch Gamma',
-    description:
-      'Combo de 3 módulos esenciales: organizador verde con compartimentos, espejo encastrable rosa y pizarra azul con borrador.',
-    price: 6800,
+    name: 'QUBIT MIX',
+    description: "Este combo contiene 3 módulos:\n1 Módulo grande (50 x 50)\n2 Módulos medianos (50 x 25)",
+    price: 106000,
     materials: 'Foam ultra suave con detalles bordados a mano.',
     dimensions: 'Set completo: 65 cm × 55 cm',
     coverImage: '/images/combos/combo-3-img-1.jpg',
@@ -86,10 +82,10 @@ export const combos = [
   },
   {
     id: 4,
-    name: 'Combo Patch Delta',
+    name: ' QUBIT TRIO',
     description:
-      'Trío modular con estante azul, marco de espejo rosa y panel corcho amarillo con bolsillito para fotos y notas polaroid.',
-    price: 8900,
+      'Este combo contiene 3 módulos:\n 1 Módulo grande (50 x 50)\n1 Módulo mediano (50 x 25)\n1 Módulo pequeño (25 x 25)',
+    price: 99000,
     materials: 'Foam de alta memoria con conectores de encastre universal.',
     dimensions: 'Set completo: 70 cm × 55 cm',
     coverImage: '/images/combos/combo-4-img-1.jpg',

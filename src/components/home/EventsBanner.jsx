@@ -14,15 +14,14 @@ export default function EventsBanner() {
             className="text-xs font-semibold tracking-widest uppercase"
             style={{ color: '#6E94B2' }}
           >
-            ✦ Foto deslizadas · Eventos · Quiénes somos
+            ✦ Eventos
           </span>
           <h2 className="text-3xl md:text-4xl font-black text-stone-700 leading-tight">
             Conocé<br />
-            <span style={{ color: '#8EAE8D' }}>nuestra historia</span>
+            <span style={{ color: '#8EAE8D' }}>próximos eventos</span>
           </h2>
           <p className="text-stone-500 text-sm max-w-xs leading-relaxed">
-            Somos un equipo creativo apasionado por el diseño modular y lúdico.
-            Participamos en ferias, talleres y eventos de diseño en todo el país.
+            Descubrí dónde encontrarnos, participá de nuestras actividades y viví la experiencia QUBIT en persona.
           </p>
           <Link
             to="/eventos"
@@ -33,27 +32,7 @@ export default function EventsBanner() {
           </Link>
         </div>
 
-        {/* Bloque derecho: foto simulada */}
-        <div className="flex gap-3 z-10">
-          {/* Foto 1 */}
-          <div
-            className="w-28 h-36 md:w-36 md:h-44 rounded-2xl shadow-md flex items-end p-3"
-            style={{ backgroundColor: '#A8C0D0' }}
-          >
-            <span className="text-white text-[10px] font-semibold opacity-80">
-              Feria 2024 🎪
-            </span>
-          </div>
-          {/* Foto 2 (levemente desplazada) */}
-          <div
-            className="w-28 h-36 md:w-36 md:h-44 rounded-2xl shadow-md flex items-end p-3 mt-5"
-            style={{ backgroundColor: '#B8CCE0' }}
-          >
-            <span className="text-white text-[10px] font-semibold opacity-80">
-              Taller modular 🧩
-            </span>
-          </div>
-        </div>
+
 
         {/* Círculo decorativo de fondo */}
         <div

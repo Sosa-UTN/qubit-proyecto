@@ -62,9 +62,7 @@ export default function IndividualGrid() {
               <p className="text-xs font-semibold text-stone-700 leading-snug line-clamp-2">
                 {product.name}
               </p>
-              <p className="text-xs font-bold text-stone-900 mt-0.5">
-                ${product.price.toLocaleString('es-AR')}
-              </p>
+
             </div>
           </div>
         ))}

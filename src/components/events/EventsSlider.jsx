@@ -15,7 +15,7 @@ const EVENT_SLIDES = [
   {
     id: 3,
     image: '/images/eventos/eventos-3.jpeg',
-    alt: 'Comunidad Qubit y talleres',
+    alt: 'Comunidad Qubit',
   },
 ]
 
@@ -98,7 +98,7 @@ export default function EventsSlider() {
 
           {/* Descripción */}
           <p className="text-xs sm:text-sm text-stone-700 max-w-md leading-relaxed font-medium" style={{ color: '#ffffffff' }}>
-            Estamos coordinando nuevos stands y ferias itinerantes de diseño.
+            Estamos coordinando nuevos stands y ferias de diseño.
             ¡Dejanos tu correo y te enviamos la agenda en cuanto salgan las fechas!
           </p>
         </div>

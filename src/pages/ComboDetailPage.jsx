@@ -198,13 +198,9 @@ export default function ComboDetailPage() {
               style={{ backgroundColor: '#C8D7E3' }}
             >
               <h2 className="text-xl font-black text-stone-700">{combo.name}</h2>
-              <p className="text-sm text-stone-600 leading-relaxed">
+              <p className="text-sm text-stone-600 leading-relaxed whitespace-pre-line">
                 {combo.description}
               </p>
-              <div className="flex flex-col gap-1 text-xs text-stone-500">
-                <p><span className="font-semibold">Material:</span> {combo.materials}</p>
-                <p><span className="font-semibold">Dimensiones:</span> {combo.dimensions}</p>
-              </div>
               <p
                 className="text-2xl font-black mt-1"
                 style={{ color: '#5A7A9A' }}
